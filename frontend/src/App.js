@@ -12,7 +12,7 @@ function App() {
   const [jsonKey, setJsonKey] = useState(null);
   useEffect(() => {
     // if (socket !== null) return;
-    const newSocket = io(`https://e2e.onrender.com:8080`);
+    const newSocket = io(`https://e2e.onrender.com`);
     newSocket.on('connect', () => {
       setSocket(newSocket);
       console.log('connect with ID', newSocket.id);
