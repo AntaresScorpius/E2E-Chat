@@ -1,9 +1,12 @@
 const express = require('express');
 const app = express();
-// const cors = require('cors');
+const cors = require('cors');
 const http = require('http');
 const httpserver = http.createServer(app);
-// app.use(cors());
+app.use(cors());
+app.use(express.json());
+app.use(express.static('build'));
+
 const {Server} = require('socket.io');
 
 const io = new Server(httpserver, {cors: {origin: '*'}});
@@ -58,8 +61,9 @@ io.on('connection', (socket) => {
     // io.to(toRoom).emit('chat', msg);
   });
 });
-app.get('/', (req, res) => {
-  res.send('hello');
-});
+
+// app.get('/', (req, res) => {
+//   res.send('hello');
+// });
 
 httpserver.listen(8080, () => console.log('server running on 8080'));
