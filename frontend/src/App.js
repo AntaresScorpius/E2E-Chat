@@ -12,7 +12,7 @@ function App() {
   const [jsonKey, setJsonKey] = useState(null);
   useEffect(() => {
     // if (socket !== null) return;
-    const newSocket = io(`http://localhost:8080`);
+    const newSocket = io(`https://e2e.onrender.com:8080`);
     newSocket.on('connect', () => {
       setSocket(newSocket);
       console.log('connect with ID', newSocket.id);
@@ -45,7 +45,10 @@ function App() {
       {socket ? (
         <Message socket={socket} jsonKey={jsonKey} priKey={priKey} />
       ) : (
-        <h4>Server offline</h4>
+        <h4>
+          Server offline... Please wait while it boots up and refresh after a
+          few seconds
+        </h4>
       )}
     </div>
   );

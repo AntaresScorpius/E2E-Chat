@@ -1,6 +1,10 @@
 body {
   background: linear-gradient(to right, #1e3c72, #2a5298);
 }
+
+h4 {
+  color: white;
+}
 .text-gradient {
   color: #f614b8;
   background-image: -webkit-linear-gradient(
