@@ -22,12 +22,12 @@ function App() {
         .then((keypair) => {
           setPriKey(keypair.privateKey);
           setPubKey(keypair.publicKey);
-          console.log(keypair);
+          // console.log(keypair);
           return toJWK(keypair.publicKey);
         })
         .then((jwkkey) => {
           setJsonKey(jwkkey);
-          console.log('jsonKey', jwkkey);
+          // console.log('jsonKey', jwkkey);
         })
         .catch((err) => {
           console.log('error making key', err);

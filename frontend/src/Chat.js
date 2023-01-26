@@ -9,7 +9,7 @@ const Chat = ({socket, partnerKey, modalRef, priKey}) => {
   const inputRef = useRef(null);
 
   if (!flag) {
-    console.log('flag', flag);
+    // console.log('flag', flag);
     socket.on('chat', async (message) => {
       try {
         let de = await decryptData(priKey, message);
@@ -17,7 +17,7 @@ const Chat = ({socket, partnerKey, modalRef, priKey}) => {
         const li = <p className="receiver">{de}</p>;
         setMsg((prevMsg) => [...prevMsg, li]);
       } catch (error) {
-        console.log('messages undefined ');
+        // console.log('messages undefined ');
       }
     });
     setFlag(true);
@@ -30,7 +30,7 @@ const Chat = ({socket, partnerKey, modalRef, priKey}) => {
     setMsg((prevMsg) => [...prevMsg, li]);
     setText('');
     inputRef.current.value = '';
-    console.log('sending encrypted text', en);
+    // console.log('sending encrypted text', en);
   }
   console.log('chat re render');
 

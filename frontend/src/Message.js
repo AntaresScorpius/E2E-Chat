@@ -21,14 +21,14 @@ function Message({socket, jsonKey, priKey}) {
   }
 
   socket.on('key', async (msg) => {
-    console.log('Server wants to exchange public keys:', msg);
+    // console.log('Server wants to exchange public keys:', msg);
     socket.emit('exchange', jsonKey);
   });
 
   socket.on('exchange', async (jwk) => {
-    console.log('recieved parters key', jwk);
+    // console.log('recieved parters key', jwk);
     const key = await toCrypto(jwk);
-    console.log('after conversion', key);
+    // console.log('after conversion', key);
     setPartnerKey(key);
   });
 
