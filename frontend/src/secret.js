@@ -18,7 +18,7 @@ async function genkey() {
 
 async function toJWK(key) {
   const jwk = await subtle.exportKey('jwk', key);
-  console.log('jwk', jwk);
+  // console.log('jwk', jwk);
   return jwk;
 }
 
@@ -35,7 +35,7 @@ async function toCrypto(jwk) {
     true,
     ['encrypt']
   );
-  console.log('cry obj', cryObj);
+  // console.log('cry obj', cryObj);
   return cryObj;
 }
 
@@ -48,9 +48,9 @@ async function encryptData(key, plainText) {
     key,
     encodedText
   );
-  console.log('encypted text is ArrayBuffer', cipherText);
-  let buffer = new Uint8Array(cipherText);
-  console.log('En buffer is', buffer);
+  // console.log('encypted text is ArrayBuffer', cipherText);
+  // let buffer = new Uint8Array(cipherText);
+  // console.log('En buffer is', buffer);
   return cipherText;
 }
 async function decryptData(key, cipherText) {
@@ -62,9 +62,9 @@ async function decryptData(key, cipherText) {
       key,
       cipherText
     );
-    console.log('decrypted ArrayBuffer', plaintext);
+    // console.log('decrypted ArrayBuffer', plaintext);
     let decodedText = new TextDecoder().decode(plaintext);
-    console.log('decoded text', decodedText);
+    // console.log('decoded text', decodedText);
     return decodedText;
   } catch (error) {
     console.log('decrypt error', error);

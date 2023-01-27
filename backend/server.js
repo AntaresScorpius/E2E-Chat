@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chat', (msg) => {
-    console.log('chat', msg);
+    // console.log('chat', msg);
     let toRoom;
     if (socket.rooms.size === 2) {
       for (let r of socket.rooms) {
