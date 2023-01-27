@@ -2,39 +2,41 @@ import React, {useEffect, useState, useRef} from 'react';
 import Chat from './Chat';
 // import axios from 'axios';
 
-import {decryptData, toCrypto} from './secret';
+import {toCrypto} from './secret';
 // import {Socket} from 'socket.io-client';
 
 function Message({socket, jsonKey, priKey}) {
   // const [messages, setMessages] = useState([]);
   const [partnerKey, setPartnerKey] = useState(null);
   const [room, setRoom] = useState(null);
-
+  const [wait, setWait] = useState('');
   const modalRef = useRef(null);
 
   function handleJoin(e) {
     socket.emit('join', room);
+    // alert('wait for one more user to join the room');
     // socket.emit('join', room);
     // socket.on(room);
+    setWait('wait for one more user to join the room');
 
     console.log('join room :', room);
   }
 
-  socket.on('key', async (msg) => {
-    // console.log('Server wants to exchange public keys:', msg);
-    socket.emit('exchange', jsonKey);
-  });
-
-  socket.on('exchange', async (jwk) => {
-    // console.log('recieved parters key', jwk);
-    const key = await toCrypto(jwk);
-    // console.log('after conversion', key);
-    setPartnerKey(key);
-  });
-
   useEffect(() => {
     socket.on('error', (msg) => {
       alert(msg);
+    });
+
+    socket.on('key', async (msg) => {
+      // console.log('Server wants to exchange public keys:', msg);
+      socket.emit('exchange', jsonKey);
+    });
+
+    socket.on('exchange', async (jwk) => {
+      // console.log('recieved parters key', jwk);
+      const key = await toCrypto(jwk);
+      // console.log('after conversion', key);
+      setPartnerKey(key);
     });
   }, []);
 
@@ -88,7 +90,10 @@ function Message({socket, jsonKey, priKey}) {
       ) : (
         <>
           <p className="text-gradient">Enter Room first</p>
-          <p className="text-gradient">Chat Appears when two users join</p>
+          <p className="text-gradient">
+            Chat Appears when two users join the same room
+          </p>
+          <p className="text-gradient"> {wait}</p>
         </>
       )}
     </div>

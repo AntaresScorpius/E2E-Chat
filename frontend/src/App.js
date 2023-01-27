@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {io} from 'socket.io-client';
 import Message from './Message';
-import {genkey, encryptData, decryptData, toJWK, toCrypto} from './secret';
+import {genkey, toJWK} from './secret';
 
 import './App.css';
 
